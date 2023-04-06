@@ -21,10 +21,10 @@ var (
 )
 
 func main() {
-    log.SetFlags(log.LstdFlags | log.Lmicroseconds | log.LUTC | log.Lshortfile)
+	log.SetFlags(log.LstdFlags | log.Lmicroseconds | log.LUTC | log.Lshortfile)
 
 	flag.IntVar(&port, "port", 6565, "Server's listening port")
-	flag.StringVar(&host, "address", "0.0.0.0", "Server's listening address")
+	flag.StringVar(&host, "host", "0.0.0.0", "Server's listening address")
 	flag.BoolVar(&enableHealth, "enable-health", true, "Enable or disable health grpc service")
 	flag.BoolVar(&enableReflection, "enable-reflection", true, "Enable or disable reflection service")
 
@@ -48,7 +48,7 @@ func main() {
 		reflection.Register(srv)
 	}
 
-    log.Printf("starting greeter server at %v", lis.Addr())
+	log.Printf("starting greeter server at %v", lis.Addr())
 	if err := srv.Serve(lis); err != nil {
 		log.Fatalf("error serving grpc server: %s", err.Error())
 	}
